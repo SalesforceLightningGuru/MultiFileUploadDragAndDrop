@@ -1,0 +1,42 @@
+<aura:component access="public" controller="MultiSelectFileUploadCtrl" 
+                implements="flexipage:availableForAllPageTypes,force:hasRecordId">
+    
+    <aura:attribute name="recordId" type="Id"/>
+    <aura:attribute name="filesList" type="MultiFileUploadWrapper[]"/>
+    <aura:handler name="init" value="{!this}" action="{!c.onInit}" />
+    <aura:attribute name="message" type="String" default="Drag profile picture here"/>
+    
+    
+    
+    
+    <div ondragover="{!c.onDragOver}" ondrop="{!c.onDrop}">
+        
+        <article class="slds-card">
+            <div class="slds-card__header slds-grid">
+                <header class="slds-media slds-media--center slds-has-flexi-truncate">
+                    <div class="slds-media__figure">
+                        <span class="slds-icon_container slds-icon-standard-attachment" title="description of icon when needed">
+                            <lightning:icon iconName="doctype:attachment"/>
+                        </span>
+                    </div>
+                    <div class="slds-media__body">
+                        <h2>
+                            <a href="javascript:void(0);" class="slds-card__header-link slds-truncate">
+                                <span class="slds-text-heading--small">Attachments ({!v.filesList.length})</span>
+                            </a>
+                        </h2>
+                    </div>
+                </header>
+                
+            </div>
+            <div class="slds-card__body">
+                <div class="slds-card__body--inner slds-grid slds-wrap slds-grid--pull-padded">
+                    <aura:iteration items="{!v.filesList}" var="attachmentObj">
+                        <c:MultipleFileUploadChildComp AttachmentObject="{!attachmentObj}" filesList="{!v.filesList}"/> 
+                    </aura:iteration>                  
+                </div>
+            </div>
+        </article>
+    </div>    
+    
+</aura:component>

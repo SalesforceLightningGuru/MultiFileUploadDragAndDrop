@@ -1,0 +1,35 @@
+<aura:component controller="MultiSelectFileUploadCtrl" implements="flexipage:availableForRecordHome,force:hasRecordId" access="global">
+    <aura:attribute name="AttachmentObject" type="MultiSelectFileUploadCtrl" access="public"/>
+       
+     <aura:attribute name="filesList" type="MultiFileUploadWrapper[]"/>
+    
+    
+    <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-5 slds-hint-parent">
+        <div class="slds-media__figure">
+            <div class="slds-icon_container slds-icon-standard-attachment" title="if needed">
+                <lightning:icon iconName="doctype:attachment"/>
+                <span class="slds-assistive-text">Attachment</span>
+            </div>
+        </div>
+        <div class="slds-media__body">
+            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                <h3 class="slds-truncate" title="Related Record Title 1"><a href="javascript:void(0);">{!v.AttachmentObject.attName}</a></h3>
+                <div class="slds-shrink-none">
+                    
+                    <lightning:buttonMenu alternativeText="Toggle menu">
+                       <!-- <lightning:menuItem onactive="{!c.editContact}" label="Edit" value="{!v.AttachmentObject.attachmentId}" iconName="action:edit" /> -->
+                        <lightning:menuItem onactive="{!c.deleteContact}" label="Delete" value="{!v.AttachmentObject.attachmentId}" iconName="action:delete" />
+                    </lightning:buttonMenu>
+                    
+                </div>
+            </div>
+            <div class="slds-tile__detail slds-text-body--small">
+                 <dl class="slds-list--horizontal slds-wrap">
+                 
+                 <dd class="slds-item--detail slds-truncate">
+                     <img src="{!v.AttachmentObject.imageUrl}"/></dd>
+                 </dl>
+            </div>
+        </div>
+    </div>
+</aura:component>
